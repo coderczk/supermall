@@ -38,6 +38,7 @@ export default {
 
       this.$emit('scroll',position)
     });
+    
     //监听上拉事件
     this.scroll.on('pullingUp',() => {
         // console.log('上拉加载');
@@ -50,7 +51,11 @@ export default {
   methods: {
       finishPullUp(){
           this.scroll.finishPullUp()
+      },
+      refresh(){
+        this.scroll && this.scroll.refresh()
       }
+      
   },
 };
 </script>
