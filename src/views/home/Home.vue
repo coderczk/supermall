@@ -4,7 +4,7 @@
     <TabControl
     :titles="['流行','新款','精选']"
      class="tab-control"
-     ref="`"
+     ref="tabControl1"
      @tabClick="tabClick" 
      v-show="isTabFixed"></TabControl>
 
@@ -27,54 +27,6 @@
 
   <BackTop @click.native="backClick" v-show="isShowBackTop" ></BackTop>
 
-    <ul>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-      <li>11</li>
-    </ul>
   </div>
 </template>
 
@@ -119,9 +71,22 @@ export default {
       currentType:'pop',
       isShowBackTop:false,
       tabOffsetTop:0,
-      isTabFixed:false
+      isTabFixed:false,
+      saveY:0
     };
   },
+  activated() {
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.getCurrentY()
+  },
+   computed: {
+      showGoods() {
+        return this.goods[this.currentType].list
+      }
+    },
   created() {
     //1. 请求多个数据
     this.getHomeMultidata();
@@ -233,6 +198,11 @@ export default {
 .content{
   height: calc(100% - 93px);
   overflow: hidden;
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+  left: 0;
+  right: 0;
   
 }
 /* 两种方法之一 */
