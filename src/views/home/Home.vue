@@ -1,6 +1,6 @@
 <template>
   <div id="home" >
-    <nav-bar class="home-nav"> <div slot="center">铠衣屋</div></nav-bar>
+    <nav-bar class="home-nav"> <div slot="center">coderCzk</div></nav-bar>
     <TabControl
     :titles="['流行','新款','精选']"
      class="tab-control"
@@ -183,7 +183,7 @@ export default {
 .home-nav {
   background-color: red;
   color: white;
-
+  font-weight: 700;
   /* position: fixed;
   left: 0;
   right: 0;
